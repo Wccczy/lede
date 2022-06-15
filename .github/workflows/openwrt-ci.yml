@@ -71,30 +71,42 @@ jobs:
           #
           # 在 cat >> .config <<EOF 到 EOF 之间粘贴你的编译配置, 需注意缩进关系
           # 例如:
-
+          
+          # 编译x86_64固件:
           cat >> .config <<EOF
-          CONFIG_TARGET_IMAGES_GZIP=y
-          CONFIG_KERNEL_BUILD_USER="OpenWrt-CI"
-          CONFIG_KERNEL_BUILD_DOMAIN="Azure"
           CONFIG_TARGET_x86=y
           CONFIG_TARGET_x86_64=y
           CONFIG_TARGET_x86_64_DEVICE_generic=y
-          # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-          CONFIG_PACKAGE_luci-app-arpbind=m
-          CONFIG_PACKAGE_luci-app-autoreboot=m
-          CONFIG_PACKAGE_luci-app-ddns=m
-          CONFIG_PACKAGE_luci-app-filetransfer=m
-          CONFIG_PACKAGE_luci-app-frpc=m
-          CONFIG_PACKAGE_luci-app-ipsec-vpnd=m
-          CONFIG_PACKAGE_luci-app-nlbwmon=m
-          CONFIG_PACKAGE_luci-app-ramfree=m
-          CONFIG_PACKAGE_luci-app-samba=m
-          CONFIG_PACKAGE_luci-app-upnp=m
-          CONFIG_PACKAGE_luci-app-vlmcsd=m
-          CONFIG_PACKAGE_luci-app-webadmin=m
-          CONFIG_PACKAGE_luci-app-zerotier=m
-          CONFIG_PACKAGE_luci-app-wrtbwmon=m
-          CONFIG_PACKAGE_luci-app-firewall=m
+          EOF
+          
+          # 固件压缩:
+          cat >> .config <<EOF
+          CONFIG_TARGET_IMAGES_GZIP=y
+          EOF
+
+          # ipV6 支持
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+          CONFIG_PACKAGE_ipv6helper=y
+          EOF
+          
+          # 常用软件
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-app-arpbind=y
+          CONFIG_PACKAGE_luci-app-autoreboot=y
+          CONFIG_PACKAGE_luci-app-ddns=y
+          CONFIG_PACKAGE_luci-app-filetransfer=y
+          CONFIG_PACKAGE_luci-app-frpc=y
+          CONFIG_PACKAGE_luci-app-ipsec-vpnd=y
+          CONFIG_PACKAGE_luci-app-nlbwmon=y
+          CONFIG_PACKAGE_luci-app-ramfree=y
+          CONFIG_PACKAGE_luci-app-samba=y
+          CONFIG_PACKAGE_luci-app-upnp=y
+          CONFIG_PACKAGE_luci-app-vlmcsd=y
+          CONFIG_PACKAGE_luci-app-webadmin=y
+          CONFIG_PACKAGE_luci-app-zerotier=y
+          CONFIG_PACKAGE_luci-app-wrtbwmon=y
+          CONFIG_PACKAGE_luci-app-firewall=y
           EOF
 
           #
